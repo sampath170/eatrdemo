@@ -50,19 +50,40 @@
             document.getElementById("mapPlaceholder"), mapOptions
             );
 
+
+
             //place the initial marker
             var marker = new google.maps.Marker({
             position: coords,
             map: map,
-            title: "Current location!"
+            title: "Current location!",
+                icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000'
             });
 
-            var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+
+            //adding info window
+            var contentString = '<div id="content">test content</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+
+            //info window listener
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+              });
+
+
+
+
+            // new marker
+            /*var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
                 title: 'Hello World!'
-            });
+            });*/
 
             }
         </script>
