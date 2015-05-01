@@ -27,6 +27,7 @@
             {
                alert("Geolocation API not supported.");
             }
+            ko.applyBindings(this.restaurantMap,document.getElementById('restaurantsList'));
         }
 
         this.init();//load the app

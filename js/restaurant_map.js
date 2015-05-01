@@ -8,7 +8,7 @@ var RestaurantMapViewModel = (function() {
         var self = this;
 
         this.init = function(config){
-
+            this.restaurantsList = ko.observableArray([]);
             if(typeof config === 'undefined' ||
                 (config != null && !config.hasOwnProperty('elementId')))
                 alert('Error initializing RestaurantMapViewModel.');
@@ -40,6 +40,7 @@ var RestaurantMapViewModel = (function() {
             for (var i = 0; i < results.length; i++) {
               var place = results[i];
               console.log(results[i]);
+              self.restaurantsList.push(results[i]);
               //createMarker(results[i]);
                 var coords = place.geometry.location;
               var marker = new google.maps.Marker({

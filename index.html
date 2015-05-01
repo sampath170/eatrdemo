@@ -11,7 +11,7 @@
     <script src="js/html5shiv.js"></script>
     <![endif]-->
 
-
+    <script language="Javascript" src="js/knockout.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
@@ -75,9 +75,20 @@
             <div id="mapPlaceholder"></div>
         </div>
         <div class="col-md-4 column">
+             <div id="restaurantsList" style="height:450px;overflow-y:scroll">
+                 <div data-bind="foreach:restaurantsList"  >
+                     <div data-bind="text:name" style="color:black;font-size:14px"></div>
+
+                     <div data-bind="text:vicinity" style="color:grey;font-size:10px"></div>
+                    
+                     <br>
+                 </div>
+
+             </div>
         </div>
     </div>
 </div>
+
 
 <script language="Javascript" src="js/restaurant_map.js"></script>
 <script language="Javascript" src="js/app_home.js"></script>
