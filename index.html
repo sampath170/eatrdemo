@@ -23,69 +23,7 @@
         width: 700px;
     </style>
     <script>
-            if (navigator.geolocation)
-            {
-                navigator.geolocation.getCurrentPosition(showCurrentLocation);
-            }
-            else
-            {
-               alert("Geolocation API not supported.");
-            }
 
-            function showCurrentLocation(position)
-            {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                var coords = new google.maps.LatLng(latitude, longitude);
-
-                var mapOptions = {
-                zoom: 15,
-                center: coords,
-                mapTypeControl: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-
-            //create the map, and place it in the HTML map div
-            map = new google.maps.Map(
-            document.getElementById("mapPlaceholder"), mapOptions
-            );
-
-
-
-            //place the initial marker
-            var marker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            title: "Current location!",
-                icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000'
-            });
-
-
-            //adding info window
-            var contentString = '<div id="content">test content</div>';
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-
-
-            //info window listener
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker);
-              });
-
-
-
-
-            // new marker
-            /*var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: 'Hello World!'
-            });*/
-
-            }
         </script>
 
 <body style="">
@@ -138,3 +76,6 @@
         </div>
     </div>
 </div>
+
+<script language="Javascript" src="js/restaurant_map.js"></script>
+<script language="Javascript" src="js/app_home.js"></script>
