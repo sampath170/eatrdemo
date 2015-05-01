@@ -11,7 +11,7 @@ margin-top:5px;
 
 .iconTextBox
 {
-background-image: url('img/current_location.svg') ;
+background-image: url('../img/current_location.svg') ;
 background-repeat: no-repeat;
 background-position:right;
 vertical-align: middle;
