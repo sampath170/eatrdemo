@@ -47,7 +47,7 @@ var RestaurantMapViewModel = (function() {
                          position: coords,
                          map: map,
                          title: "Current location!",
-                             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+i+'|FF0000|000000'
+                             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|FF0000|000000'
                          });
 
 

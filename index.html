@@ -77,10 +77,12 @@
         <div class="col-md-4 column">
              <div id="restaurantsList" style="height:450px;overflow-y:scroll">
                  <div data-bind="foreach:restaurantsList"  >
-                     <div data-bind="text:name" style="color:black;font-size:14px"></div>
+
+                     <span data-bind="text:($index()+1)" style="color:grey;font-size:12px"></span>
+                     <span data-bind="text:name" style="color:black;font-size:14px"></span>
 
                      <div data-bind="text:vicinity" style="color:grey;font-size:10px"></div>
-                    
+
                      <br>
                  </div>
 
