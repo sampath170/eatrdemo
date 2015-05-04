@@ -19,14 +19,7 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     </script>
-    <style>
-        #mapPlaceholder {
-        height: 400px;
-        width: 700px;
-    </style>
-    <script>
 
-        </script>
 
 <body style="">
 <div class="container" style="padding-left:0px;padding-right:0px;width:auto;">
@@ -74,27 +67,48 @@
         <div class="col-md-8 column">
             <div id="mapPlaceholder"></div>
         </div>
-        <div class="col-md-4 column">
-            <div id="restaurantsFilter" style="padding-left:30px;margin-top:17px">
-                <span style="margin-top:10px;font-size:14px;">Sort Restaurants By:</span>
-                <span class="dropdown" style="float:right;margin-top:-10px">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Distance
+        <div class="col-md-4 column" style="padding-right:0px">
+            <div id="restaurantsFilter" style="margin-top:17px">
+                <span style="margin-top:10px;font-size:14px;padding-left:30px;">Sort Restaurants By:</span>
+                <span class="dropdown" style="float:right;margin-top:-10px;padding-left:30px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="border-radius:3px;width:115px">Distance
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Distance</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ratings</a></li>
                     </ul>
                 </span>
-             <div id="restaurantsList" style="padding-top:30px;">
-                 <div data-bind="foreach:restaurantsList"  >
-
+                <hr/>
+             <div id="restaurantsList">
+                 <!--<div data-bind="foreach:restaurantsList"  >
+                    <div style="padding-left:30px;">
                      <span data-bind="text:($index()+1)" style="color:grey;font-size:12px"></span>
-                     <span data-bind="text:name" style="color:black;font-size:16px;margin-left:5px;"></span>
+                     <span data-bind="text:name" style="color:black;font-size:18px;margin-left:5px;"></span>
 
-                     <div data-bind="text:vicinity" style="color:grey;font-size:10px;margin-left:16px;"></div>
+                     <div data-bind="text:vicinity" style="color:#424242;font-size:12px;margin-left:16px;"></div>
 
-                     <br>
-                 </div>
+                      <img src="img/restaurant.png"/>
+                    </div>
+                     <hr/>
+                 </div>-->
+
+                 <table >
+                    <tbody data-bind="foreach:restaurantsList">
+                    <tr style="border-bottom: 1px solid #E6E6E6;">
+                        <td data-bind="text:($index()+1)" style="color:grey;font-size:12px;padding-left:15px;margin-top:-4px;"></td>
+                     <td><div data-bind="text:name" style="color:black;font-size:18px;padding-left:2px;"></div>
+
+                     <div data-bind="text:vicinity" style="color:#424242;font-size:12px;margin-left:2px;"></div>
+                     <span data-bind="text:Math.round(rating)" style="font-size:12px;"></span>
+                     <span data-bind="attr:{'class':'rating'+Math.round(rating)}"></span>
+
+                     </td>
+
+                     <td style="padding-top:20px;padding-bottom:15px"> <img src="img/restaurant.png" style="opacity:0.3;width:95%;"/></td>
+
+                    </tr>
+                    </tbody>
+
+                 </table>
 
              </div>
         </div>
