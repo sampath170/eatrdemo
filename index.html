@@ -94,11 +94,11 @@
                  <table >
                     <tbody data-bind="foreach:restaurantsList">
                     <tr style="border-bottom: 1px solid #E6E6E6;">
-                        <td data-bind="text:($index()+1)" style="color:grey;font-size:12px;padding-left:15px;margin-top:-4px;"></td>
+                        <td data-bind="text:($index()+1)" style="color:grey;font-size:12px;padding-left:15px;margin-top:-4px;position:relative;top:-29px;"></td>
                      <td><div data-bind="text:name" style="color:black;font-size:18px;padding-left:2px;"></div>
 
                      <div data-bind="text:vicinity" style="color:#424242;font-size:12px;margin-left:2px;"></div>
-                     <span data-bind="text:Math.round(rating)" style="font-size:12px;"></span>
+                     <span data-bind="text:Math.round(rating)" style="font-size:12px;position:relative;top:-4px;"></span>
                      <span data-bind="attr:{'class':'rating'+Math.round(rating)}"></span>
 
                      </td>

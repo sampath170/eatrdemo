@@ -40,32 +40,41 @@ var RestaurantMapViewModel = (function() {
         };
 
         this.callback = function(results, status) {
+          window.coordsMap = new Array();
+          window.markersMap = new Array();
+
           if (status == google.maps.places.PlacesServiceStatus.OK) {
+            window.resultsHover = new Array();
+            window.resultsHover = results;
             for (var i = 0; i < results.length; i++) {
               var place = results[i];
               console.log(results[i]);
               self.restaurantsList.push(results[i]);
               //createMarker(results[i]);
                 var coords = place.geometry.location;
-              var marker = new google.maps.Marker({
+
+               var marker = new google.maps.Marker({
                          position: coords,
                          map: map,
-                         title: "Current location!",
-                             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|FF0000|000000'
+                         title: 'Marker'+i,
+                             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|01A9DB|ffffff'
                          });
 
 
                          //adding info window
-                         var contentString = '<div>'+results[i]['name']+'</div>';
+                        var contentString = '<div><span style="font-size:14px"><b>'+results[i]['name']+'</b></span><div>'+results[i]['vicinity']+'</div></div>';
+                        var infowindow = new google.maps.InfoWindow({ content: contentString
+                                                                            });
 
-                         var infowindow = new google.maps.InfoWindow({
-                             content: contentString
-                         });
-
+                        var coordsKey = coords.A+','+coords.F;
+                        window.coordsMap[coordsKey] = infowindow;
+                        window.markersMap[coordsKey] = marker;
 
                          //info window listener
-                         google.maps.event.addListener(marker, 'click', function() {
-                             infowindow.open(map,marker);
+                         google.maps.event.addListener(marker, 'click', function(e) {
+                             var key = e.latLng.A+','+e.latLng.F;
+                             var val = e.target;
+                             window.coordsMap[key].open(map,window.markersMap[key]);
                            });
 
             }
