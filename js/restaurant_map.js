@@ -86,7 +86,8 @@ var RestaurantMapViewModel = (function() {
            document.getElementById(mapConfig.elementId), mapOptions
            );
 
-
+            $('#'+mapConfig.elementId).css('width',screen.width*.63);
+            $('#'+mapConfig.elementId).css('height',screen.height);
 
              var request = {
                location: coords,

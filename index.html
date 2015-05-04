@@ -29,14 +29,14 @@
         </script>
 
 <body style="">
-<div class="container">
+<div class="container" style="padding-left:0px;padding-right:0px;width:auto;">
 
 
     <!-- Header -->
 
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <nav class="navbar navbar-default" style="background:skyblue" role="navigation">
+    <div class="row clearfix" style="margin-left:0px;margin-right:0px;">
+        <div class="col-md-12 column" style="padding-left:0px;padding-right:0px;">
+            <nav class="navbar navbar-default" style="background:skyblue;margin-bottom:0px;border-radius:0px;" role="navigation">
                 <div class="navbar-header" style="background:skyblue">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a style="color:white;font-size:30px;" class="navbar-brand" href="#">EATR</a>
                 </div>
@@ -70,12 +70,12 @@
 
    <!-- Map View Row -->
 
-    <div class="row clearfix">
+    <div class="row clearfix" style="margin-right:15px;">
         <div class="col-md-8 column">
             <div id="mapPlaceholder"></div>
         </div>
         <div class="col-md-4 column">
-             <div id="restaurantsList" style="height:450px;overflow-y:scroll">
+             <div id="restaurantsList" style="height:450px;overflow-y:scroll;padding-left:30px;">
                  <div data-bind="foreach:restaurantsList"  >
 
                      <span data-bind="text:($index()+1)" style="color:grey;font-size:12px"></span>
