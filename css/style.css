@@ -18,6 +18,13 @@ vertical-align: middle;
 background-color: white;
 }
 
+tr:hover{
+ background: #EEF0F2;
+}
+
+tr:normal{
+}
+
 a{
     color: white important;
 }

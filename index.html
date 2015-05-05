@@ -91,10 +91,10 @@
                      <hr/>
                  </div>-->
 
-                 <table >
+                 <table class="resList">
                     <tbody data-bind="foreach:restaurantsList">
-                    <tr style="border-bottom: 1px solid #E6E6E6;">
-                        <td data-bind="text:($index()+1)" style="color:grey;font-size:12px;padding-left:15px;margin-top:-4px;position:relative;top:-29px;"></td>
+                    <tr style="border-bottom: 1px solid #E6E6E6;cursor:pointer;" data-bind="attr:{'coords':geometry.location.A+','+geometry.location.F},click:$root.showMarker">
+                        <td data-bind="text:($index()+1)" style="color:grey;font-size:12px;padding-left:15px;position:relative;top:-21px;"></td>
                      <td><div data-bind="text:name" style="color:black;font-size:18px;padding-left:2px;"></div>
 
                      <div data-bind="text:vicinity" style="color:#424242;font-size:12px;margin-left:2px;"></div>

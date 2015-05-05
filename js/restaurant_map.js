@@ -39,9 +39,14 @@ var RestaurantMapViewModel = (function() {
            return (Math.round(rating));
         };
 
+        this.showMarker = function(data,event){
+            var key = data.geometry.location.A+','+data.geometry.location.F;
+            window.coordsMap[key].open(map,window.markersMap[key]);
+        };
+
         this.callback = function(results, status) {
-          window.coordsMap = new Array();
-          window.markersMap = new Array();
+          window.coordsMap = new Object();
+          window.markersMap = new Object();
 
           if (status == google.maps.places.PlacesServiceStatus.OK) {
             window.resultsHover = new Array();
@@ -60,7 +65,12 @@ var RestaurantMapViewModel = (function() {
                              icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|01A9DB|ffffff'
                          });
 
-
+                        if(i==0){
+                            var locName = results[i]['vicinity'];
+                            if(locName != null && locName.length > 30)
+                                locName = locName.substring(0,30)+'...';
+                            $('.iconTextBox').val(locName);
+                        }
                          //adding info window
                         var contentString = '<div><span style="font-size:14px"><b>'+results[i]['name']+'</b></span><div>'+results[i]['vicinity']+'</div></div>';
                         var infowindow = new google.maps.InfoWindow({ content: contentString
@@ -110,30 +120,6 @@ var RestaurantMapViewModel = (function() {
 
            var service = new google.maps.places.PlacesService(this.map);
            service.nearbySearch(request, self.callback);
-
-           //self.locateNearbyRestaurants(latitude,longitude);
-
-           //place the initial marker
-
-
-
-
-           // new marker
-           /*var myLatlng = new google.maps.LatLng(12.9567392,77.7005113);
-           var marker2 = new google.maps.Marker({
-               position: myLatlng,
-               map: this.map,
-               title: 'Hello World2!',
-               icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=2|FF0000|000000'
-           });
-
-           var infowindow2 = new google.maps.InfoWindow({
-               content: 'iw 2'
-           });
-
-           google.maps.event.addListener(marker2, 'click', function() {
-               infowindow2.open(this.map,marker2);
-             });*/
 
         };
 
