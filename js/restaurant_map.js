@@ -7,6 +7,7 @@ var RestaurantMapViewModel = (function() {
         var mapConfig = {elementId:'default',lookUpApi:''};
         var self = this;
 
+        //load view model with config
         this.init = function(config){
             this.restaurantsList = ko.observableArray([]);
             if(typeof config === 'undefined' ||
@@ -15,48 +16,30 @@ var RestaurantMapViewModel = (function() {
             else
                 mapConfig = config;
 
-        }
-
-        this.locateNearbyRestaurants = function(latitude,longitude){
-
-            var apiUrl = mapConfig.lookUpApi + 77 + ',' + 66;
-
-            $.ajax({
-                type: 'GET',
-                contentType: "application/jsonp",
-                dataType: 'json',
-                cache: false,
-                url: apiUrl + '&r=' + Math.random(),
-                success: function(data) {
-                    console.log('res data:',data);
-                },error: function(data){
-                    console.log('res error',data)
-                }});
-
         };
 
         this.ratingVal = function (rating) {
            return (Math.round(rating));
         };
 
+        //Opens the info window on a marker
         this.showMarker = function(data,event){
             var key = data.geometry.location.A+','+data.geometry.location.F;
-            window.coordsMap[key].open(map,window.markersMap[key]);
+            self.coordsMap[key].open(map,self.markersMap[key]);
         };
 
-        this.callback = function(results, status) {
-          window.coordsMap = new Object();
-          window.markersMap = new Object();
+        //Plots nearby restaurant markers on the map
+        this.markRestaurantsOnMap = function(results, status) {
+          self.coordsMap = new Object();
+          self.markersMap = new Object();
 
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-            window.resultsHover = new Array();
-            window.resultsHover = results;
+
             for (var i = 0; i < results.length; i++) {
-              var place = results[i];
-              console.log(results[i]);
-              self.restaurantsList.push(results[i]);
-              //createMarker(results[i]);
-                var coords = place.geometry.location;
+               var place = results[i];
+               console.log(results[i]);
+               self.restaurantsList.push(results[i]);
+               var coords = place.geometry.location;
 
                var marker = new google.maps.Marker({
                          position: coords,
@@ -77,20 +60,21 @@ var RestaurantMapViewModel = (function() {
                                                                             });
 
                         var coordsKey = coords.A+','+coords.F;
-                        window.coordsMap[coordsKey] = infowindow;
-                        window.markersMap[coordsKey] = marker;
+                        self.coordsMap[coordsKey] = infowindow;
+                        self.markersMap[coordsKey] = marker;
 
-                         //info window listener
-                         google.maps.event.addListener(marker, 'click', function(e) {
-                             var key = e.latLng.A+','+e.latLng.F;
-                             var val = e.target;
-                             window.coordsMap[key].open(map,window.markersMap[key]);
-                           });
+                        //info window listener
+                        google.maps.event.addListener(marker, 'click', function(e) {
+                            var key = e.latLng.A+','+e.latLng.F;
+                            var val = e.target;
+                            self.coordsMap[key].open(map,self.markersMap[key]);
+                       });
 
             }
           }
         }
 
+        //Gets co-ordinates and calls API to load the map
         this.showLocation = function(position) {
 
            var latitude = position.coords.latitude;
@@ -119,7 +103,7 @@ var RestaurantMapViewModel = (function() {
              };
 
            var service = new google.maps.places.PlacesService(this.map);
-           service.nearbySearch(request, self.callback);
+           service.nearbySearch(request, self.markRestaurantsOnMap);
 
         };
 
